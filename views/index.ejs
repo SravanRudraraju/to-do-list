@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/public/style.css">
+</head>
+
+<body>
+    <div class="main-container">
+        <div class="form-container">
+            <h1>Task Manager</h1>
+            <form action="">
+                <label for="task-name">task name</label>
+                <input type="text" name="task-name">
+                <label for="description">description</label>
+                <textarea name="description" id="" rows="5" cols="30"></textarea>
+                <label for="deadline">deadline</label>
+                <input type="date" name="deadline">
+                <label for="priority">priority</label>
+                <select name="priority" id="">
+                    <option value="high">high</option>
+                    <option value="medium">medium</option>
+                    <option value="low">low</option>
+                </select>
+                <button type="submit">add task</button>
+            </form>
+        </div>
+        <div class="tasks-container">
+            <h1>List of tasks</h1>
+            <p> <span>learn react</span> <span>15-june-2026 </span> </p>
+            <p> <span>watch movie</span> <span>14-june-2026 </span> </p>
+            <p> <span>walk 30 mins</span> <span>10-june-2026</span> </p>
+        </div>
+    </div>
+</body>
+
+</html>
