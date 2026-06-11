@@ -1,0 +1,26 @@
+{
+  "name": "to-do",
+  "version": "1.0.0",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SravanRudraraju/to-do-list.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SravanRudraraju/to-do-list/issues"
+  },
+  "homepage": "https://github.com/SravanRudraraju/to-do-list#readme",
+  "description": "",
+  "dependencies": {
+    "body-parser": "^2.2.2",
+    "ejs": "^6.0.1",
+    "express": "^5.2.1",
+    "pg": "^8.21.0"
+  }
+}
