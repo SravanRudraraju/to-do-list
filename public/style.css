@@ -83,3 +83,26 @@ button:hover{
     color: #666;
     font-size: 14px;
 }
+
+.task-card{
+    display:flex;
+    align-items:center;
+
+    margin-bottom:15px;
+    padding:15px;
+
+    border-left:6px solid red;
+    border-radius:8px;
+
+    background:#f4f5f7;
+}
+
+
+.task-title{
+    flex:1;
+    margin-left: 10px;
+}
+
+.task-date{
+    color:#666;
+}

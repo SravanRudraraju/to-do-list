@@ -30,11 +30,30 @@
         </div>
         <div class="tasks-container">
             <h1>List of tasks</h1>
+
             <% for(var i=0;i<tasks.length;i++){ %>
-            <p> <span><%= tasks[i].title %></span> <span><%= tasks[i].deadline.toLocaleDateString() %> </span> </p>
+
+                <div class="task-card">
+
+                    <span>
+                        <input type="checkbox" class="complete-checkbox" data-id="<%= tasks[i].id %>">
+                    </span>
+
+                    <span class="task-title">
+                        <%= tasks[i].title %>
+                    </span>
+
+                    <span class="task-date">
+                        <%= tasks[i].deadline.toLocaleDateString() %>
+                    </span>
+
+                </div>
+
             <% } %>
+
         </div>
     </div>
+    <script src="/script.js"></script>
 </body>
 
 </html>

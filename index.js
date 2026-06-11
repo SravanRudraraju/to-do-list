@@ -29,10 +29,16 @@ app.post("/add-task",(req,res)=>{
 })
 
 app.get("/",async (req,res)=>{
- const result = await db.query("select * from tasks")
+ const result = await db.query("select * from tasks where completed = false")
  res.render("index.ejs",{tasks:result.rows})
 })
 
+app.post("/complete/:id", async (req,res)=>{
+  console.log(req.params.id);
+  await db.query("update tasks set completed = true where id = $1",[req.params.id])
+  res.send("ok")
+  
+})
 
 
 app.listen(port,() => {
