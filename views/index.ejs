@@ -5,16 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/public/style.css">
+    <link rel="stylesheet" href="/style.css">
 </head>
 
 <body>
     <div class="main-container">
         <div class="form-container">
             <h1>Task Manager</h1>
-            <form action="">
-                <label for="task-name">task name</label>
-                <input type="text" name="task-name">
+            <form action="/add-task" method="post">
+                <label for="title">task name</label>
+                <input type="text" name="title">
                 <label for="description">description</label>
                 <textarea name="description" id="" rows="5" cols="30"></textarea>
                 <label for="deadline">deadline</label>

@@ -14,13 +14,22 @@ const db = new pg.Client({
     password  : "varma0408",
     port : 5432
 })
-
+app.use(express.static("public"))
+app.use(bodyParser.urlencoded({ extended: true }))
+// const __dirname = dirname(fileURLToPath(import.meta.url))
+app.set("views engine","ejs")
 db.connect()
 
+app.get("/",(req,res)=>[
+  res.render("index.ejs")
+])
 
+app.post("/add-task",(req,res)=>{
 
-
-
+  db.query("insert into tasks (title,description,deadline,priority) values($1,$2,$3,$4)",[req.body.title,req.body.description,req.body.deadline,req.body.priority])
+  console.log(req.body);
+  res.redirect("/")
+})
 
 
 
