@@ -1,0 +1,32 @@
+.completed-container{
+    width: 90%;
+    margin: 50px auto;
+}
+
+.completed-container h1{
+    margin-bottom: 20px;
+}
+
+.completed-table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.completed-table th,
+.completed-table td{
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.completed-table th{
+    background-color: #f4f4f4;
+}
+
+.completed-table tr:nth-child(even){
+    background-color: #fafafa;
+}
+
+.completed-table a{
+    text-decoration: none;
+}

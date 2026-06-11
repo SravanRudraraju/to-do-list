@@ -8,6 +8,7 @@ checkboxes.forEach((checkbox)=>{
             method : "POST"
         })
         // console.log(response);
+        location.reload();
         
     })
 })

@@ -32,6 +32,10 @@ app.get("/",async (req,res)=>{
  const result = await db.query("select * from tasks where completed = false")
  res.render("index.ejs",{tasks:result.rows})
 })
+app.get("/completed",async (req,res)=>{
+ const result = await db.query("select * from tasks where completed = true")
+ res.render("completed.ejs",{tasks:result.rows})
+})
 
 app.post("/complete/:id", async (req,res)=>{
   console.log(req.params.id);

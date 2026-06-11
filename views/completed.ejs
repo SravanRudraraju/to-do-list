@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Completed Tasks</title>
+    <link rel="stylesheet" href="/completed.css">
+</head>
+<body>
+
+    <div class="completed-container">
+
+        <h1>Completed Tasks</h1>
+
+        <a href="/">← Back to Tasks</a>
+
+        <table class="completed-table">
+
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Priority</th>
+                    <th>Deadline</th>
+                    <th>Undo</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <% for(let i=0; i<tasks.length; i++){ %>
+
+                <tr>
+
+                    <td>
+                        <a href="/task/<%= tasks[i].id %>">
+                            <%= tasks[i].title %>
+                        </a>
+                    </td>
+
+                    <td><%= tasks[i].description %></td>
+
+                    <td><%= tasks[i].priority %></td>
+
+                    <td>
+                        <%= tasks[i].deadline.toLocaleDateString() %>
+                    </td>
+
+                    <td>
+                        <input
+                            type="checkbox"
+                            class="undo-checkbox"
+                            data-id="<%= tasks[i].id %>"
+                        >
+                    </td>
+
+                    <td>
+                        <a href="/edit/<%= tasks[i].id %>">Edit</a>
+                    </td>
+
+                    <td>
+                        <form action="/delete/<%= tasks[i].id %>" method="post">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
+
+                </tr>
+
+                <% } %>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <script src="/script.js"></script>
+
+</body>
+</html>
