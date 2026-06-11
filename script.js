@@ -17,12 +17,9 @@ const db = new pg.Client({
 app.use(express.static("public"))
 app.use(bodyParser.urlencoded({ extended: true }))
 // const __dirname = dirname(fileURLToPath(import.meta.url))
-app.set("views engine","ejs")
+app.set("view engine","ejs")
 db.connect()
 
-app.get("/",(req,res)=>[
-  res.render("index.ejs")
-])
 
 app.post("/add-task",(req,res)=>{
 
@@ -31,6 +28,10 @@ app.post("/add-task",(req,res)=>{
   res.redirect("/")
 })
 
+app.get("/",async (req,res)=>{
+ const result = await db.query("select * from tasks")
+ res.render("index.ejs",{tasks:result.rows})
+})
 
 
 

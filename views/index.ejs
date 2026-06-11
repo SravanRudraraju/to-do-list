@@ -30,9 +30,9 @@
         </div>
         <div class="tasks-container">
             <h1>List of tasks</h1>
-            <p> <span>learn react</span> <span>15-june-2026 </span> </p>
-            <p> <span>watch movie</span> <span>14-june-2026 </span> </p>
-            <p> <span>walk 30 mins</span> <span>10-june-2026</span> </p>
+            <% for(var i=0;i<tasks.length;i++){ %>
+            <p> <span><%= tasks[i].title %></span> <span><%= tasks[i].deadline.toLocaleDateString() %> </span> </p>
+            <% } %>
         </div>
     </div>
 </body>
