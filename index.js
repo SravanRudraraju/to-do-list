@@ -38,10 +38,14 @@ app.get("/completed",async (req,res)=>{
 })
 
 app.post("/complete/:id", async (req,res)=>{
-  console.log(req.params.id);
+  // console.log(req.params.id);
   await db.query("update tasks set completed = true where id = $1",[req.params.id])
-  res.send("ok")
-  
+  res.send("ok") 
+})
+app.post("/undo/:id", async (req,res)=>{
+  // console.log(req.params.id);
+  await db.query("update tasks set completed = false where id = $1",[req.params.id])
+  res.send("ok") 
 })
 
 
