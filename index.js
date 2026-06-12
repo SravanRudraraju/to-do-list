@@ -48,7 +48,10 @@ app.post("/undo/:id", async (req,res)=>{
   res.send("ok") 
 })
 
-
+app.post("/delete/:id",async (req,res)=>{
+ await db.query("delete from tasks where id = $1",[req.params.id])
+ res.redirect("/completed")
+})
 app.listen(port,() => {
   console.log(`listening at ${port}`);
 })
