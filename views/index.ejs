@@ -25,7 +25,7 @@
                     <option value="medium">medium</option>
                     <option value="low">low</option>
                 </select>
-                <button type="submit">add task</button>
+                <button type="submit" class="add-task">add task</button>
             </form>
         </div>
         <div class="tasks-container">
@@ -46,6 +46,11 @@
                     <span class="task-date">
                         <%= tasks[i].deadline.toLocaleDateString() %>
                     </span>
+                    <button class="edit-btn" data-id="<%= tasks[i].id %>" data-title="<%= tasks[i].title %>"
+                        data-description="<%= tasks[i].description %>" data-priority="<%= tasks[i].priority %>"
+                        data-deadline="<%= tasks[i].deadline.toISOString().split('T')[0] %>">
+                        Edit
+                    </button>
 
                 </div>
 
@@ -55,15 +60,28 @@
                     </div>
         </div>
     </div>
-    <!-- <div id="modal">
-        <div id="modal-content">
-            <h2 id="modal-title"></h2>
+    
 
-            <p id="modal-description" data-description=""></p>
-
-            <button id="close-modal">Close</button>
+    </div>
+    <div id="edit-modal">
+        <div id="edit-modal-content">
+            <h2>Edit Task</h2>
+            <input type="hidden" id="edit-id">
+            <label>Title</label>
+            <input type="text" id="edit-title">
+            <label>Description</label>
+            <textarea id="edit-description"></textarea>
+            <label>Deadline</label>
+            <input type="date" id="edit-deadline">
+            <label>Priority</label>
+            <select id="edit-priority">
+                <option value="high">High</option>
+                <option value="medium">Medium</option>
+                <option value="low">Low</option>
+            </select>
+            <button id="save-btn">Save</button>
+            <button id="close-btn">Close</button>
         </div>
-    </div> -->
     <script src="/script.js"></script>
 </body>
 

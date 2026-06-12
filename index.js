@@ -17,6 +17,7 @@ const db = new pg.Client({
 app.use(express.static("public"))
 app.use(bodyParser.urlencoded({ extended: true }))
 // const __dirname = dirname(fileURLToPath(import.meta.url))
+app.use(express.json());
 app.set("view engine","ejs")
 db.connect()
 
@@ -28,6 +29,8 @@ app.post("/add-task",(req,res)=>{
   res.redirect("/")
 })
 
+
+
 app.get("/",async (req,res)=>{
  const result = await db.query("select * from tasks where completed = false")
  res.render("index.ejs",{tasks:result.rows})
@@ -36,6 +39,7 @@ app.get("/completed",async (req,res)=>{
  const result = await db.query("select * from tasks where completed = true")
  res.render("completed.ejs",{tasks:result.rows})
 })
+
 
 app.post("/complete/:id", async (req,res)=>{
   // console.log(req.params.id);
@@ -52,6 +56,13 @@ app.post("/delete/:id",async (req,res)=>{
  await db.query("delete from tasks where id = $1",[req.params.id])
  res.redirect("/completed")
 })
+
+app.post("/edit/:id",async (req,res)=>{
+  await db.query("update tasks set title = $1 , description = $2 , deadline = $3 , priority = $4  where id = $5",[req.body.title,req.body.description,req.body.deadline,req.body.priority,req.params.id])
+  res.redirect("/")
+})
+
+
 app.listen(port,() => {
   console.log(`listening at ${port}`);
 })
