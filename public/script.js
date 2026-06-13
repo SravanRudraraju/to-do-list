@@ -34,7 +34,11 @@ const editDescription = document.getElementById("edit-description");
 const editdeadline = document.getElementById("edit-deadline");
 const editpriority = document.getElementById("edit-priority");
 
+const editModal = document.getElementById("edit-modal")
+
 const saveBtn = document.getElementById("save-btn");
+
+const closeBtn = document.getElementById("close-btn")
 
 editbuttons.forEach((button)=>{
     button.addEventListener("click",()=>{
@@ -44,6 +48,8 @@ editbuttons.forEach((button)=>{
         editpriority.value = button.dataset.priority;
         editId.value = button.dataset.id;
         console.log(editId.value);
+
+        editModal.style.display = "flex"
     })
 })
 
@@ -64,5 +70,10 @@ saveBtn.addEventListener("click", async()=>{
     })
     // console.log(task);
     location.reload();
+    editModal.style.display = "none"
     
+})
+
+closeBtn.addEventListener("click",() => {
+  editModal.style.display = "none"
 })
