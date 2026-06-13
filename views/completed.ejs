@@ -56,7 +56,11 @@
                     </td>
 
                     <td>
-                        <a href="/edit/<%= tasks[i].id %>">Edit</a>
+                        <button class="edit-btn" data-id="<%= tasks[i].id %>" data-title="<%= tasks[i].title %>"
+                        data-description="<%= tasks[i].description %>" data-priority="<%= tasks[i].priority %>"
+                        data-deadline="<%= tasks[i].deadline.toISOString().split('T')[0] %>">
+                        Edit
+                    </button>
                     </td>
 
                     <td>
@@ -74,7 +78,26 @@
         </table>
 
     </div>
-
+<div id="edit-modal">
+        <div id="edit-modal-content">
+            <h2>Edit Task</h2>
+            <input type="hidden" id="edit-id">
+            <label>Title</label>
+            <input type="text" id="edit-title">
+            <label>Description</label>
+            <textarea id="edit-description"></textarea>
+            <label>Deadline</label>
+            <input type="date" id="edit-deadline">
+            <label>Priority</label>
+            <select id="edit-priority">
+                <option value="high">High</option>
+                <option value="medium">Medium</option>
+                <option value="low">Low</option>
+            </select>
+            <button id="save-btn">Save</button>
+            <button id="close-btn">Close</button>
+        </div>
+    <!-- <script src="/script.js"></script> -->
     <script src="/script.js"></script>
 
 </body>
