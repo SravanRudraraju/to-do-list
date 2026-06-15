@@ -1,65 +1,216 @@
-.completed-container{
-    width: 90%;
-    margin: 50px auto;
+.tasks-container{
+    width: 50%;
+    margin: 0 auto;
 }
 
-.completed-container h1{
+.tasks-container h1{
     margin-bottom: 20px;
 }
 
-.completed-table{
-    width: 100%;
-    border-collapse: collapse;
+.task-card{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    padding: 15px 20px;
+    margin-bottom: 15px;
+
+    background-color: #f5f5f5;
+    border-radius: 10px;
+
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-.completed-table th,
-.completed-table td{
-    padding: 12px;
-    border: 1px solid #ddd;
-    text-align: left;
+.task-title{
+    flex: 1;
+    font-size: 20px;
+    font-weight: 500;
+    cursor: pointer;
 }
 
-.completed-table th{
-    background-color: #f4f4f4;
+.task-title:hover{
+    text-decoration: underline;
 }
 
-.completed-table tr:nth-child(even){
-    background-color: #fafafa;
+.task-date{
+    color: #666;
+    min-width: 120px;
 }
 
-.completed-table a{
+.undo-container{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.undo-label{
+    font-size: 14px;
+    color: #555;
+}
+
+.edit-btn,
+.task-card form button{
+    padding: 8px 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.edit-btn{
+    background-color: #3498db;
+    color: white;
+}
+
+.task-card form button{
+    background-color: #e74c3c;
+    color: white;
+}
+
+.edit-btn:hover{
+    opacity: 0.9;
+}
+
+.task-card form button:hover{
+    opacity: 0.9;
+}
+
+.completed-page{
+    margin-top: 25px;
+}
+
+.completed-page a{
     text-decoration: none;
+    color: #3498db;
+    font-weight: 500;
 }
+
+.completed-page a:hover{
+    text-decoration: underline;
+}
+
 
 #edit-modal{
     position: fixed;
-    top: 0;
-    left: 0;
-
-    width: 100vw;
-    height: 100vh;
-
-    background: rgba(0,0,0,0.5);
+    inset: 0;
 
     display: none;
 
     justify-content: center;
     align-items: center;
 
+    background: rgba(0,0,0,0.55);
+
+    backdrop-filter: blur(4px);
+
     z-index: 1000;
 }
 
 #edit-modal-content{
-    background: white;
-
     width: 500px;
 
-    padding: 25px;
+    background: white;
 
-    border-radius: 12px;
+    padding: 30px;
+
+    border-radius: 18px;
+
+    box-shadow: 0 20px 50px rgba(0,0,0,0.25);
 
     display: flex;
     flex-direction: column;
 
     gap: 12px;
+
+    animation: modalOpen 0.25s ease;
+}
+
+#edit-modal-content h2{
+    margin: 0 0 10px 0;
+
+    text-align: center;
+
+    font-size: 28px;
+}
+
+#edit-modal-content label{
+    font-weight: 600;
+    color: #444;
+}
+
+#edit-modal-content input,
+#edit-modal-content textarea,
+#edit-modal-content select{
+    width: 100%;
+
+    padding: 12px;
+
+    border: 1px solid #d9d9d9;
+
+    border-radius: 10px;
+
+    font-size: 15px;
+
+    box-sizing: border-box;
+
+    outline: none;
+
+    transition: 0.2s;
+}
+
+#edit-modal-content textarea{
+    resize: vertical;
+    min-height: 120px;
+}
+
+#edit-modal-content input:focus,
+#edit-modal-content textarea:focus,
+#edit-modal-content select:focus{
+    border-color: #3498db;
+
+    box-shadow: 0 0 0 3px rgba(52,152,219,0.15);
+}
+
+#save-btn,
+#close-btn{
+    border: none;
+
+    padding: 12px;
+
+    border-radius: 10px;
+
+    font-size: 15px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+#save-btn{
+    background: #2ecc71;
+    color: white;
+}
+
+#save-btn:hover{
+    transform: translateY(-2px);
+}
+
+#close-btn{
+    background: #e74c3c;
+    color: white;
+}
+
+#close-btn:hover{
+    transform: translateY(-2px);
+}
+
+@keyframes modalOpen{
+    from{
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to{
+        opacity: 1;
+        transform: scale(1);
+    }
 }

@@ -8,76 +8,59 @@
 </head>
 <body>
 
-    <div class="completed-container">
+    <div class="tasks-container">
+    <h1>Completed Tasks</h1>
 
-        <h1>Completed Tasks</h1>
+    <% for(let i=0; i<tasks.length; i++){ %>
 
-        <a href="/">← Back to Tasks</a>
+    <div class="task-card">
 
-        <table class="completed-table">
+        <span>
+            <input
+                type="checkbox"
+                class="undo-checkbox"
+                data-id="<%= tasks[i].id %>"
+            >
+             <span class="undo-label">Undo</span>
+        </span>
 
-            <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Description</th>
-                    <th>Priority</th>
-                    <th>Deadline</th>
-                    <th>Undo</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
-                </tr>
-            </thead>
+        <span
+            class="task-title"
+            data-description="<%= tasks[i].description %>"
+        >
+            <%= tasks[i].title %>
+        </span>
 
-            <tbody>
-                <% for(let i=0; i<tasks.length; i++){ %>
+        <span class="task-date">
+            <%= tasks[i].deadline.toLocaleDateString() %>
+        </span>
 
-                <tr>
+        <button
+            class="edit-btn"
+            data-id="<%= tasks[i].id %>"
+            data-title="<%= tasks[i].title %>"
+            data-description="<%= tasks[i].description %>"
+            data-priority="<%= tasks[i].priority %>"
+            data-deadline="<%= tasks[i].deadline.toISOString().split('T')[0] %>"
+        >
+            Edit
+        </button>
 
-                    <td>
-                        <a href="/task/<%= tasks[i].id %>">
-                            <%= tasks[i].title %>
-                        </a>
-                    </td>
-
-                    <td><%= tasks[i].description %></td>
-
-                    <td><%= tasks[i].priority %></td>
-
-                    <td>
-                        <%= tasks[i].deadline.toLocaleDateString() %>
-                    </td>
-
-                    <td>
-                        <input
-                            type="checkbox"
-                            class="undo-checkbox"
-                            data-id="<%= tasks[i].id %>"
-                        >
-                    </td>
-
-                    <td>
-                        <button class="edit-btn" data-id="<%= tasks[i].id %>" data-title="<%= tasks[i].title %>"
-                        data-description="<%= tasks[i].description %>" data-priority="<%= tasks[i].priority %>"
-                        data-deadline="<%= tasks[i].deadline.toISOString().split('T')[0] %>">
-                        Edit
-                    </button>
-                    </td>
-
-                    <td>
-                        <form action="/delete/<%= tasks[i].id %>" method="post">
-                            <button type="submit">Delete</button>
-                        </form>
-                    </td>
-
-                </tr>
-
-                <% } %>
-
-            </tbody>
-
-        </table>
+        <form action="/delete/<%= tasks[i].id %>" method="post">
+            <button type="submit">
+                Delete
+            </button>
+        </form>
 
     </div>
+
+    <% } %>
+
+    <div class="completed-page">
+        <a href="/">← Back to Tasks</a>
+    </div>
+
+</div>
 <div id="edit-modal">
         <div id="edit-modal-content">
             <h2>Edit Task</h2>
