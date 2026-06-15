@@ -43,7 +43,9 @@ const closeBtn = document.getElementById("close-btn")
 const tasktitles = document.querySelectorAll(".task-title")
 
 const descriptionModal = document.getElementById("description-modal")
-const descriptionContent = document.getElementById("description-modal-content")
+const descriptionText = document.getElementById("description-text")
+const descriptionTitle = document.getElementById("description-title")
+const descriptionDeadline = document.getElementById("description-deadline")
 
 editbuttons.forEach((button)=>{
     button.addEventListener("click",()=>{
@@ -85,9 +87,11 @@ closeBtn.addEventListener("click",() => {
 
 tasktitles.forEach((title)=>{
     title.addEventListener("click",() => {
-      descriptionContent.textContent =title.dataset.description 
-      descriptionModal.style.display = "flex"
-      
+        descriptionTitle.textContent =title.dataset.title;
+        descriptionText.textContent =title.dataset.description;
+        descriptionDeadline.textContent ="Deadline: " + title.dataset.deadline;
+        descriptionModal.style.display = "flex"
+        //  console.log(title.dataset);
     })
 })
 

@@ -37,7 +37,7 @@
 
 .task-date{
     color: #666;
-    min-width: 120px;
+    
 }
 
 .undo-container{
@@ -260,14 +260,152 @@
     box-shadow: 0 15px 40px rgba(0,0,0,0.2);
 }
 
-.complete-checkbox,
+/* .complete-checkbox,
 .undo-checkbox{
     accent-color: #6366f1;
     cursor: pointer;
     transition: 0.2s;
-}
-
+} */
+/* 
 .complete-checkbox:hover,
 .undo-checkbox:hover{
     transform: scale(1.1);
+} */
+
+#description-modal{
+    position: fixed;
+    inset: 0;
+
+    display: none;
+
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(0,0,0,0.55);
+
+    backdrop-filter: blur(4px);
+
+    z-index: 1000;
 }
+
+#description-modal-content{
+    width: 450px;
+
+    background: white;
+
+    padding: 30px;
+
+    border-radius: 18px;
+
+    box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+
+    animation: modalOpen 0.25s ease;
+}
+
+#description-title{
+    color: #2563eb;
+
+    margin-bottom: 15px;
+
+    font-size: 28px;
+
+    word-break: break-word;
+}
+
+#description-text{
+    color: #444;
+
+    line-height: 1.7;
+
+    margin-bottom: 20px;
+
+    white-space: pre-wrap;
+}
+
+#description-deadline{
+    background: #f8fafc;
+
+    padding: 12px;
+
+    border-radius: 10px;
+
+    margin-bottom: 20px;
+
+    color: #666;
+
+    font-size: 14px;
+}
+
+#description-close-btn{
+    width: 100%;
+
+    border: none;
+
+    padding: 12px;
+
+    border-radius: 10px;
+
+    background: #4338ca;
+
+    color: white;
+
+    font-size: 15px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+#description-close-btn:hover{
+    transform: translateY(-2px);
+}
+
+
+@media (max-width: 1024px){
+
+    .tasks-container{
+        width:90%;
+    }
+
+    .task-title{
+        flex:1;
+        min-width:0;
+
+        white-space:nowrap;
+        overflow:hidden;
+        text-overflow:ellipsis;
+    }
+}
+
+@media (max-width: 768px){
+
+    .tasks-container{
+        width:100%;
+        padding:15px;
+        box-sizing:border-box;
+    }
+
+    .task-date{
+        display:none;
+    }
+
+    .task-card{
+        gap:10px;
+        padding:12px;
+    }
+
+    .edit-btn,
+    .task-card form button{
+        padding:6px 10px;
+        font-size:14px;
+    }
+
+    #edit-modal-content{
+        width:90%;
+    }
+
+    #description-modal-content{
+        width:90%;
+    }
+}
+

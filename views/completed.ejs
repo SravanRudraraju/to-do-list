@@ -1,67 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Completed Tasks</title>
     <link rel="stylesheet" href="/completed.css">
 </head>
+
 <body>
 
     <div class="tasks-container">
-    <h1>Completed Tasks</h1>
+        <h1>Completed Tasks</h1>
 
-    <% for(let i=0; i<tasks.length; i++){ %>
+        <% for(let i=0; i<tasks.length; i++){ %>
 
-    <div class="task-card <%= tasks[i].priority %>">
+            <div class="task-card <%= tasks[i].priority %>">
 
-        <span>
-            <input
-                type="checkbox"
-                class="undo-checkbox"
-                data-id="<%= tasks[i].id %>"
-            >
-             <span class="undo-label">Undo</span>
-        </span>
+                <span>
+                    <input type="checkbox" class="undo-checkbox" checked data-id="<%= tasks[i].id %>">
 
-        <span
-            class="task-title"
-            data-description="<%= tasks[i].description %>"
-        >
-            <%= tasks[i].title %>
-        </span>
+                </span>
 
-        <span class="task-date">
-            <%= tasks[i].deadline.toLocaleDateString() %>
-        </span>
+                <span class="task-title" data-title="<%= tasks[i].title %>"
+                    data-description="<%= tasks[i].description %>"
+                    data-deadline="<%= tasks[i].deadline.toLocaleDateString() %>">
+                    <%= tasks[i].title %>
+                </span>
 
-        <button
-            class="edit-btn"
-            data-id="<%= tasks[i].id %>"
-            data-title="<%= tasks[i].title %>"
-            data-description="<%= tasks[i].description %>"
-            data-priority="<%= tasks[i].priority %>"
-            data-deadline="<%= tasks[i].deadline.toISOString().split('T')[0] %>"
-        >
-            Edit
-        </button>
+                <span class="task-date">
+                    <%= tasks[i].deadline.toLocaleDateString() %>
+                </span>
 
-        <form action="/delete/<%= tasks[i].id %>" method="post">
-            <button type="submit">
-                Delete
-            </button>
-        </form>
+                <button class="edit-btn" data-id="<%= tasks[i].id %>" data-title="<%= tasks[i].title %>"
+                    data-description="<%= tasks[i].description %>" data-priority="<%= tasks[i].priority %>"
+                    data-deadline="<%= tasks[i].deadline.toISOString().split('T')[0] %>">
+                    Edit
+                </button>
+
+                <form action="/delete/<%= tasks[i].id %>" method="post">
+                    <button type="submit">
+                        Delete
+                    </button>
+                </form>
+
+            </div>
+
+            <% } %>
+
+                <div class="completed-page">
+                    <a href="/">← Back to Tasks</a>
+                </div>
 
     </div>
-
-    <% } %>
-
-    <div class="completed-page">
-        <a href="/">← Back to Tasks</a>
-    </div>
-
-</div>
-<div id="edit-modal">
+    <div id="edit-modal">
         <div id="edit-modal-content">
             <h2>Edit Task</h2>
             <input type="hidden" id="edit-id">
@@ -80,10 +72,24 @@
             <button id="save-btn">Save</button>
             <button id="close-btn">Close</button>
         </div>
-</div>
+    </div>
+    <div id="description-modal">
 
-    <!-- <script src="/script.js"></script> -->
-    <script src="/script.js"></script>
+        <div id="description-modal-content">
+
+            <h2 id="description-title"></h2>
+
+            <p id="description-text"></p>
+
+            <p id="description-deadline"></p>
+
+            
+
+        </div>
+
+        <!-- <script src="/script.js"></script> -->
+        <script src="/script.js"></script>
 
 </body>
+
 </html>

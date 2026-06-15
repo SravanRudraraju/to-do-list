@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    
+
     <link rel="stylesheet" href="/style.css">
 </head>
 
@@ -31,7 +31,11 @@
         </div>
         <div class="tasks-container">
             <h1>List of tasks</h1>
-
+            <div class="priority-legend">
+                <span class="legend high-dot">High</span>
+                <span class="legend medium-dot">Medium</span>
+                <span class="legend low-dot">Low</span>
+            </div>
             <% for(var i=0;i<tasks.length;i++){ %>
 
                 <div class="task-card <%= tasks[i].priority %>">
@@ -40,7 +44,9 @@
                         <input type="checkbox" class="complete-checkbox" data-id="<%= tasks[i].id %>">
                     </span>
 
-                    <span class="task-title" data-description="<%= tasks[i].description %>">
+                    <span class="task-title" data-title="<%= tasks[i].title %>"
+                        data-description="<%= tasks[i].description %>"
+                        data-deadline="<%= tasks[i].deadline.toLocaleDateString() %>">
                         <%= tasks[i].title %>
                     </span>
 
@@ -89,13 +95,16 @@
 
         <div id="description-modal-content">
 
-            <h2>Description</h2>
+            <!-- <h2>Description</h2> -->
+            <h2 id="description-title"></h2>
 
             <p id="description-text"></p>
 
-            <button id="description-close-btn">
-                Close
-            </button>
+            <p id="description-deadline"></p>
+
+            
+
+            
 
         </div>
         <script src="/script.js"></script>
