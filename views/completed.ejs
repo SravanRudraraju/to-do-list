@@ -13,7 +13,7 @@
 
     <% for(let i=0; i<tasks.length; i++){ %>
 
-    <div class="task-card">
+    <div class="task-card <%= tasks[i].priority %>">
 
         <span>
             <input
@@ -66,7 +66,7 @@
             <h2>Edit Task</h2>
             <input type="hidden" id="edit-id">
             <label>Title</label>
-            <input type="text" id="edit-title">
+            <input type="text" id="edit-title" maxlength="45">
             <label>Description</label>
             <textarea id="edit-description"></textarea>
             <label>Deadline</label>
@@ -80,6 +80,8 @@
             <button id="save-btn">Save</button>
             <button id="close-btn">Close</button>
         </div>
+</div>
+
     <!-- <script src="/script.js"></script> -->
     <script src="/script.js"></script>
 

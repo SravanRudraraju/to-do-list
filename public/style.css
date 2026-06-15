@@ -244,3 +244,69 @@ button:hover{
         transform: scale(1);
     }
 }
+
+.high{
+    border-left: 8px solid red
+}
+.medium{
+    border-left: 8px solid yellow
+}
+.low{
+    border-left: 8px solid green
+}
+
+.task-title{
+     font-weight: 600;
+    color: #2563eb;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.task-title:hover{
+    text-decoration: underline;
+}
+
+#description-modal{
+    display: none;
+}
+#description-modal{
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100vw;
+    height: 100vh;
+
+    background: rgba(0,0,0,0.5);
+
+    display: none;
+
+    justify-content: center;
+    align-items: center;
+
+    z-index: 1000;
+}
+#description-modal-content{
+    background: white;
+
+    width: 400px;
+
+    padding: 25px;
+
+    border-radius: 12px;
+
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+}
+
+.complete-checkbox,
+.undo-checkbox{
+    accent-color: #6366f1;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.complete-checkbox:hover,
+.undo-checkbox:hover{
+    transform: scale(1.1);
+}

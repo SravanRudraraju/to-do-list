@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    
     <link rel="stylesheet" href="/style.css">
 </head>
 
@@ -14,7 +15,7 @@
             <h1>Task Manager</h1>
             <form action="/add-task" method="post">
                 <label for="title">task name</label>
-                <input type="text" name="title">
+                <input type="text" name="title" maxlength="45">
                 <label for="description">description</label>
                 <textarea name="description" id="" rows="5" cols="30"></textarea>
                 <label for="deadline">deadline</label>
@@ -33,13 +34,13 @@
 
             <% for(var i=0;i<tasks.length;i++){ %>
 
-                <div class="task-card">
+                <div class="task-card <%= tasks[i].priority %>">
 
                     <span>
                         <input type="checkbox" class="complete-checkbox" data-id="<%= tasks[i].id %>">
                     </span>
 
-                    <span class="task-title">
+                    <span class="task-title" data-description="<%= tasks[i].description %>">
                         <%= tasks[i].title %>
                     </span>
 
@@ -60,7 +61,7 @@
                     </div>
         </div>
     </div>
-    
+
 
     </div>
     <div id="edit-modal">
@@ -68,7 +69,7 @@
             <h2>Edit Task</h2>
             <input type="hidden" id="edit-id">
             <label>Title</label>
-            <input type="text" id="edit-title">
+            <input type="text" id="edit-title" maxlength="45">
             <label>Description</label>
             <textarea id="edit-description"></textarea>
             <label>Deadline</label>
@@ -82,7 +83,22 @@
             <button id="save-btn">Save</button>
             <button id="close-btn">Close</button>
         </div>
-    <script src="/script.js"></script>
+
+    </div>
+    <div id="description-modal">
+
+        <div id="description-modal-content">
+
+            <h2>Description</h2>
+
+            <p id="description-text"></p>
+
+            <button id="description-close-btn">
+                Close
+            </button>
+
+        </div>
+        <script src="/script.js"></script>
 </body>
 
 </html>
