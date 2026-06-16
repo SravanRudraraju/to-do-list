@@ -12,11 +12,10 @@ const app = express()
 const port = 3000
 
 const db = new pg.Client({
-  user: process.env.DB_USER,
-  host: process.env.DB_HOST,
-  database: process.env.DB_NAME,
-  password: process.env.DB_PASSWORD,
-  port: process.env.DB_PORT
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
 })
 app.use(express.static("public"))
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -42,7 +41,7 @@ app.get("/", async (req, res) => {
   if (req.query.sort === "deadline") {
     result = await db.query("select * from tasks where completed = false and user_id = $1 order by deadline asc",[req.session.userId])
   } else if (req.query.sort === "priority") {
-    console.log("priority sorting");
+    // console.log("priority sorting");
     result = await db.query(`select * from tasks where completed = false and user_id = $1 order by case  when priority ='high' then 1 when priority = 'medium' then 2 when priority= 'low' then 3 else 4 end`,[req.session.userId])
   }
   else{
