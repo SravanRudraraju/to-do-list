@@ -1,3 +1,5 @@
+import dotenv from "dotenv";
+dotenv.config();
 import pg from "pg";
 import express from "express";
 import bodyParser from "body-parser";
@@ -10,11 +12,11 @@ const app = express()
 const port = 3000
 
 const db = new pg.Client({
-  user: "postgres",
-  host: "localhost",
-  database: "to-do",
-  password: "varma0408",
-  port: 5432
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_NAME,
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT
 })
 app.use(express.static("public"))
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -24,7 +26,7 @@ app.set("view engine", "ejs")
 db.connect()
 app.use(
   session({
-    secret: "mysecretkey",
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false
   })
@@ -65,7 +67,7 @@ app.get("/login", (req, res) => {
   res.render("login.ejs")
 })
 app.get("/logout",(req,res)=>{
-  
+
     req.session.destroy(()=>{
         res.redirect("/login");
     });
@@ -74,7 +76,7 @@ app.get("/logout",(req,res)=>{
 
 app.post("/add-task", async (req, res) => {
   await db.query("insert into tasks (title,description,deadline,priority,user_id) values($1,$2,$3,$4,$5)", [req.body.title, req.body.description, req.body.deadline, req.body.priority, req.session.userId])
-  console.log(req.body);
+  // console.log(req.body);
   res.redirect("/")
 })
 
