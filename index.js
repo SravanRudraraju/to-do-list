@@ -32,9 +32,20 @@ app.post("/add-task",(req,res)=>{
 
 
 app.get("/",async (req,res)=>{
- const result = await db.query("select * from tasks where completed = false")
+  // console.log(req.query.sort);
+   
+ let query =  "select * from tasks where completed = false"
+ if(req.query.sort === "deadline"){
+  query = "select * from tasks where completed = false order by deadline asc"
+ }else if(req.query.sort === "priority"){  
+  console.log("priority sorting");
+    query = `select * from tasks where completed = false order by case  when priority ='high' then 1 when priority = 'medium' then 2 when priority= 'low' then 3 else 4 end`
+ }
+ const result = await db.query(query)
  res.render("index.ejs",{tasks:result.rows})
 })
+
+
 app.get("/completed",async (req,res)=>{
  const result = await db.query("select * from tasks where completed = true")
  res.render("completed.ejs",{tasks:result.rows})

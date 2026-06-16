@@ -1,3 +1,172 @@
+
+body.dark{
+    background:black;
+    /* color: whitesmoke; */
+}
+body.dark .form-container,
+body.dark .tasks-container{
+    background: #1f2937;
+}
+body.dark h1,
+body.dark label{
+    color: white;
+}
+
+.task-card{
+    background:#f4f5f7;
+}
+
+body.dark .task-card{
+    background:#374151;
+}
+body.dark input,
+body.dark textarea,
+body.dark select{
+    background:#4b5563;
+    color:white;
+    border:1px solid #6b7280;
+}
+/* ===== DARK MODE ===== */
+
+body.dark{
+    background: #111827;
+    color: #f3f4f6;
+}
+
+body.dark .form-container,
+body.dark .tasks-container{
+    background: #1f2937;
+}
+
+body.dark h1,
+body.dark label{
+    color: #f3f4f6;
+}
+
+body.dark .task-card{
+    background: #374151;
+}
+
+body.dark .task-title{
+    color: #93c5fd;
+}
+
+body.dark .task-date{
+    color: #d1d5db;
+}
+
+body.dark input,
+body.dark textarea,
+body.dark select{
+    background: #4b5563;
+    color: #f3f4f6;
+    border: 1px solid #6b7280;
+}
+
+body.dark input::placeholder,
+body.dark textarea::placeholder{
+    color: #d1d5db;
+}
+
+body.dark #sort-btn{
+    background: #1f2937;
+    color: #f3f4f6;
+    border: 1px solid #374151;
+}
+
+body.dark #sort-options{
+    background: #1f2937;
+    color: #f3f4f6;
+}
+
+body.dark #sort-options div:hover{
+    background: #374151;
+}
+
+body.dark .completed-page a{
+    color: #93c5fd;
+}
+
+body.dark .completed-page a:hover{
+    color: #bfdbfe;
+}
+
+body.dark .legend{
+    color: #e5e7eb;
+}
+
+body.dark #theme-btn{
+    background: #1f2937;
+    color: #f3f4f6;
+}
+
+body.dark #description-modal-content,
+body.dark #edit-modal-content{
+    background: #1f2937;
+    color: #f3f4f6;
+}
+
+body.dark #description-text{
+    color: #e5e7eb;
+}
+
+.theme-toggle{
+    position: fixed;
+
+    top: 20px;
+    right: 20px;
+
+    z-index: 9999;
+}
+
+#theme-switch{
+    display: none;
+}
+
+.switch{
+    width: 60px;
+    height: 30px;
+
+    background: #d1d5db;
+
+    border-radius: 30px;
+
+    display: block;
+
+    position: relative;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.switch::before{
+    content: "";
+
+    width: 24px;
+    height: 24px;
+
+    background: white;
+
+    border-radius: 50%;
+
+    position: absolute;
+
+    top: 3px;
+    left: 3px;
+
+    transition: 0.3s;
+}
+
+#theme-switch:checked + .switch{
+    background: #4f46e5;
+}
+
+#theme-switch:checked + .switch::before{
+    transform: translateX(30px);
+}
+
+
 .tasks-container{
     width: 50%;
     margin: 0 auto;

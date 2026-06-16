@@ -4,12 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Task Manager</title>
 
     <link rel="stylesheet" href="/style.css">
 </head>
 
 <body>
+    <div class="theme-toggle">
+        <input type="checkbox" id="theme-switch">
+        <label for="theme-switch" class="switch"></label>
+    </div>
+    
     <div class="main-container">
         <div class="form-container">
             <h1>Task Manager</h1>
@@ -31,10 +36,23 @@
         </div>
         <div class="tasks-container">
             <h1>List of tasks</h1>
-            <div class="priority-legend">
-                <span class="legend high-dot">High</span>
-                <span class="legend medium-dot">Medium</span>
-                <span class="legend low-dot">Low</span>
+            <div class="tasks-toolbar">
+                <div class="priority-legend">
+                    <span class="legend high-dot">High</span>
+                    <span class="legend medium-dot">Medium</span>
+                    <span class="legend low-dot">Low</span>
+                </div>
+                <div class="sort-menu">
+
+                    <button id="sort-btn">⇅</button>
+
+                    <div id="sort-options">
+                        <div data-sort="default"> Default</div>
+                        <div data-sort="deadline">Nearest Deadline</div>
+                        <div data-sort="priority">Priority</div>
+                    </div>
+
+                </div>
             </div>
             <% for(var i=0;i<tasks.length;i++){ %>
 
@@ -102,9 +120,9 @@
 
             <p id="description-deadline"></p>
 
-            
 
-            
+
+
 
         </div>
         <script src="/script.js"></script>

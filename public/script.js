@@ -46,6 +46,12 @@ const descriptionModal = document.getElementById("description-modal")
 const descriptionText = document.getElementById("description-text")
 const descriptionTitle = document.getElementById("description-title")
 const descriptionDeadline = document.getElementById("description-deadline")
+const sortBtn = document.getElementById("sort-btn")
+const sortOptions = document.getElementById("sort-options")
+
+const sortItems = document.querySelectorAll("#sort-options div")
+
+const themeSwitch = document.getElementById("theme-switch")
 
 editbuttons.forEach((button)=>{
     button.addEventListener("click",()=>{
@@ -60,30 +66,32 @@ editbuttons.forEach((button)=>{
     })
 })
 
-saveBtn.addEventListener("click", async()=>{
-    const task = {
-        title : editTitle.value,
-        description : editDescription.value,
-        deadline : editdeadline.value,
-        priority : editpriority.value
-    }
-    const response = await fetch(`/edit/${editId.value}`,{
-        method:"POST",
-        headers : {
-            "Content-Type":"application/json",
-        },
-        body:JSON.stringify(task)
-        
-    })
-    // console.log(task);
-    location.reload();
-    editModal.style.display = "none"
-    
-})
+if(saveBtn){
+    saveBtn.addEventListener("click", async()=>{
+        const task = {
+            title : editTitle.value,
+            description : editDescription.value,
+            deadline : editdeadline.value,
+            priority : editpriority.value
+        }
 
-closeBtn.addEventListener("click",() => {
-  editModal.style.display = "none"
-})
+        await fetch(`/edit/${editId.value}`,{
+            method:"POST",
+            headers : {
+                "Content-Type":"application/json",
+            },
+            body:JSON.stringify(task)
+        })
+        location.reload();
+        editModal.style.display = "none";
+    });
+}
+
+if(closeBtn){
+    closeBtn.addEventListener("click",() => {
+        editModal.style.display = "none";
+    });
+}
 
 tasktitles.forEach((title)=>{
     title.addEventListener("click",() => {
@@ -95,10 +103,40 @@ tasktitles.forEach((title)=>{
     })
 })
 
-descriptionModal.addEventListener("click",(event)=>{
+if(descriptionModal){
+    descriptionModal.addEventListener("click",(event)=>{
+        if(event.target === descriptionModal){
+            descriptionModal.style.display = "none";
+        }
+    });
+}
 
-    if(event.target === descriptionModal){
-        descriptionModal.style.display = "none";
+if(sortBtn && sortOptions){
+    sortBtn.addEventListener("click",()=>{
+        if(sortOptions.style.display === "block"){
+            sortOptions.style.display = "none";
+        }else{
+            sortOptions.style.display = "block";
+        }
+    });
+
+    sortItems.forEach((item)=>{
+      item.addEventListener("click",() => {
+            window.location.href = `/?sort=${item.dataset.sort}`;
+        });
+    });
+}
+
+if(localStorage.getItem("theme") === "dark"){
+    document.body.classList.add("dark");
+    themeSwitch.checked = true;
+}
+
+themeSwitch.addEventListener("change",() => {
+    document.body.classList.toggle("dark")
+    if(document.body.classList.contains("dark")){
+        localStorage.setItem("theme","dark")
+    }else{
+        localStorage.setItem("theme","light")
     }
-
-});
+})
