@@ -3,6 +3,8 @@ import express from "express";
 import bodyParser from "body-parser";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
+import bcrypt from "bcrypt";
+import session from "express-session";
 
 const app = express()
 const port = 3000
@@ -20,7 +22,13 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.json());
 app.set("view engine","ejs")
 db.connect()
-
+app.use(
+    session({
+        secret: "mysecretkey",
+        resave: false,
+        saveUninitialized: false
+    })
+);
 
 app.post("/add-task",(req,res)=>{
 
@@ -33,7 +41,9 @@ app.post("/add-task",(req,res)=>{
 
 app.get("/",async (req,res)=>{
   // console.log(req.query.sort);
-   
+   if(!req.session.userId){
+      return res.redirect("/login");
+    }
  let query =  "select * from tasks where completed = false"
  if(req.query.sort === "deadline"){
   query = "select * from tasks where completed = false order by deadline asc"
@@ -51,6 +61,12 @@ app.get("/completed",async (req,res)=>{
  res.render("completed.ejs",{tasks:result.rows})
 })
 
+app.get("/signup",(req,res)=>{
+  res.render("signup.ejs")
+})
+app.get("/login",(req,res)=>{
+  res.render("login.ejs")
+})
 
 app.post("/complete/:id", async (req,res)=>{
   // console.log(req.params.id);
@@ -73,6 +89,34 @@ app.post("/edit/:id",async (req,res)=>{
   res.redirect("/")
 })
 
+app.post("/signup", async (req,res)=>{
+  const { username, password, confirmPassword } = req.body;
+  if(password!== confirmPassword){
+    return res.send("password does not match")
+  }
+  const existingUser = await db.query("SELECT * FROM users WHERE username = $1",[username]);
+  if(existingUser.rows.length > 0){
+    return res.send("Username already exists");
+  }
+  const hashedPassword =await bcrypt.hash(password,10);
+  await db.query("insert into users(username,password) values($1,$2)",[username,hashedPassword])
+    
+  res.redirect("/login");
+})
+
+app.post("/login", async (req,res)=>{
+  const {username,password} = req.body;
+  const user = await db.query("select * from users where username = $1",[username])
+  if (user.rows.length ===0){
+    return res.send("user does not exist")
+  }
+  const match = await bcrypt.compare(password , user.rows[0].password)
+  if(!match){
+    return res.send("password does not match")
+  }
+  req.session.userId = user.rows[0].id
+  res.redirect("/")
+})
 
 app.listen(port,() => {
   console.log(`listening at ${port}`);
