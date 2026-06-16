@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task-manager</title>
+    <link rel="stylesheet" href="../public/auth.css">
+</head>
+
+<body>
+    <div class="container">
+        <form class="signup-card" action="/signup" method="post">
+            <h2>Create Account</h2>
+
+            <label for="signup-username">Username</label>
+            <input type="text" id="signup-username" name="username" placeholder="Choose a username" required>
+
+            <label for="signup-password">Password</label>
+            <input type="password" id="signup-password" name="password" placeholder="Create password" required>
+
+            <label for="confirm-password">Confirm Password</label>
+            <input type="password" id="confirm-password" name="confirmPassword" placeholder="Confirm password" required>
+
+            <button type="submit">
+                Sign Up
+            </button>
+            <p class="auth-link">
+                Already have an account?
+                <a href="/login">Login</a>
+            </p>
+        </form>
+
+    </div>
+</body>
+
+</html>
