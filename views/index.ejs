@@ -19,19 +19,21 @@
             Logout
         </a>
     </div>
-    
+
     <div class="main-container">
         <div class="form-container">
             <h1>Task Manager</h1>
             <form action="/add-task" method="post">
                 <label for="title">task name</label>
-                <input type="text" name="title" maxlength="45">
+                <input type="text" name="title" maxlength="45" required>
                 <label for="description">description</label>
                 <textarea name="description" id="" rows="5" cols="30"></textarea>
                 <label for="deadline">deadline</label>
-                <input type="date" name="deadline">
+                <input type="date" name="deadline" required>
                 <label for="priority">priority</label>
-                <select name="priority" id="">
+                <select name="priority"  required>
+                    <option value="" selected disabled>Select Priority</option>
+
                     <option value="high">high</option>
                     <option value="medium">medium</option>
                     <option value="low">low</option>

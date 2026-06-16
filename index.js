@@ -74,6 +74,11 @@ app.get("/logout",(req,res)=>{
 });
 
 app.post("/add-task", async (req, res) => {
+  // console.log(req.body);
+  const { title, deadline, priority } = req.body;
+  if(!title || !deadline || !priority){
+    return res.send("Title, deadline and priority are required");
+ }
   await db.query("insert into tasks (title,description,deadline,priority,user_id) values($1,$2,$3,$4,$5)", [req.body.title, req.body.description, req.body.deadline, req.body.priority, req.session.userId])
   // console.log(req.body);
   res.redirect("/")
